@@ -1,0 +1,810 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20242.24.0910.0334                               -->
+<workbook original-version='18.1' source-build='2024.2.3 (20242.24.0910.0334)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <SpatialFileLayer />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='rev_filtered_north_korea_data' inline='true' name='federated.0dd8wqi1ent8kl1c1x05a1hqnp2t' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='rev_filtered_north_korea_data' name='ogrdirect.1lvo3u61gnkccj15g8k331ogp2ne'>
+            <connection class='ogrdirect' directory='C:/Users/synnp/Documents/Code/NorthKoreanPrisons' filename='rev_filtered_north_korea_data.geojson' password='' server='' tablename='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='ogrdirect.1lvo3u61gnkccj15g8k331ogp2ne' name='rev_filtered_north_korea_data.geojson' table='[rev_filtered_north_korea_data.geojson]' type='table'>
+          <columns>
+            <column datatype='string' name='Location Where the Violation Occurred' ordinal='0' />
+            <column datatype='string' name='Affiliated Organisation' ordinal='1' />
+            <column datatype='string' name='Province Where the Violation Occurred' ordinal='2' />
+            <column datatype='real' name='Violation of Right to Health_count' ordinal='3' />
+            <column datatype='real' name='Forced Labour_count' ordinal='4' />
+            <column datatype='real' name='Violation of the Right to Freedom of Conscience, Thought and Religion_count' ordinal='5' />
+            <column datatype='real' name='Torture &amp; CID_count' ordinal='6' />
+            <column datatype='real' name='Violation of Freedom of Expression_count' ordinal='7' />
+            <column datatype='real' name='Violation of the Right to Life_count' ordinal='8' />
+            <column datatype='real' name='Arbitrary Deprivation of Liberty_count' ordinal='9' />
+            <column datatype='real' name='Violation of the Right to a Fair Trial _count' ordinal='10' />
+            <column datatype='real' name='Sexual and Gender-based Violence _count' ordinal='11' />
+            <column datatype='real' name='Violation of Rights of Children_count' ordinal='12' />
+            <column datatype='real' name='Violation of the Rights of Detainees with Disabilities_count' ordinal='13' />
+            <column datatype='spatial' name='Geometry' ordinal='14' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='ogrdirect.1lvo3u61gnkccj15g8k331ogp2ne' name='rev_filtered_north_korea_data.geojson' table='[rev_filtered_north_korea_data.geojson]' type='table'>
+          <columns>
+            <column datatype='string' name='Location Where the Violation Occurred' ordinal='0' />
+            <column datatype='string' name='Affiliated Organisation' ordinal='1' />
+            <column datatype='string' name='Province Where the Violation Occurred' ordinal='2' />
+            <column datatype='real' name='Violation of Right to Health_count' ordinal='3' />
+            <column datatype='real' name='Forced Labour_count' ordinal='4' />
+            <column datatype='real' name='Violation of the Right to Freedom of Conscience, Thought and Religion_count' ordinal='5' />
+            <column datatype='real' name='Torture &amp; CID_count' ordinal='6' />
+            <column datatype='real' name='Violation of Freedom of Expression_count' ordinal='7' />
+            <column datatype='real' name='Violation of the Right to Life_count' ordinal='8' />
+            <column datatype='real' name='Arbitrary Deprivation of Liberty_count' ordinal='9' />
+            <column datatype='real' name='Violation of the Right to a Fair Trial _count' ordinal='10' />
+            <column datatype='real' name='Sexual and Gender-based Violence _count' ordinal='11' />
+            <column datatype='real' name='Violation of Rights of Children_count' ordinal='12' />
+            <column datatype='real' name='Violation of the Rights of Detainees with Disabilities_count' ordinal='13' />
+            <column datatype='spatial' name='Geometry' ordinal='14' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Location Where the Violation Occurred</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Location Where the Violation Occurred]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Location Where the Violation Occurred</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Affiliated Organisation</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Affiliated Organisation]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Affiliated Organisation</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Province Where the Violation Occurred</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Province Where the Violation Occurred]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Province Where the Violation Occurred</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of Right to Health_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of Right to Health_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of Right to Health_count</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Forced Labour_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Forced Labour_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Forced Labour_count</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of the Right to Freedom of Conscience, Thought and Religion_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of the Right to Freedom of Conscience, Thought and Religion_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of the Right to Freedom of Conscience, Thought and Religion_count</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Torture &amp; CID_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Torture &amp; CID_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Torture &amp; CID_count</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of Freedom of Expression_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of Freedom of Expression_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of Freedom of Expression_count</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of the Right to Life_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of the Right to Life_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of the Right to Life_count</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Arbitrary Deprivation of Liberty_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Arbitrary Deprivation of Liberty_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Arbitrary Deprivation of Liberty_count</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of the Right to a Fair Trial _count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of the Right to a Fair Trial _count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of the Right to a Fair Trial _count</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sexual and Gender-based Violence _count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Sexual and Gender-based Violence _count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Sexual and Gender-based Violence _count</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of Rights of Children_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of Rights of Children_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of Rights of Children_count</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Violation of the Rights of Detainees with Disabilities_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Violation of the Rights of Detainees with Disabilities_count]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Violation of the Rights of Detainees with Disabilities_count</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Geometry</remote-name>
+            <remote-type>8</remote-type>
+            <local-name>[Geometry]</local-name>
+            <parent-name>[rev_filtered_north_korea_data.geojson]</parent-name>
+            <remote-alias>Geometry</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>spatial</local-type>
+            <aggregation>Collect</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Arbitrary Deprivation of Liberty count' datatype='real' name='[Arbitrary Deprivation of Liberty_count]' role='measure' type='quantitative' />
+      <column caption='Forced Labour count' datatype='real' name='[Forced Labour_count]' role='measure' type='quantitative' />
+      <column datatype='string' name='[Province Where the Violation Occurred]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Sexual and Gender-based Violence  count' datatype='real' name='[Sexual and Gender-based Violence _count]' role='measure' type='quantitative' />
+      <column caption='Torture &amp; CID count' datatype='real' name='[Torture &amp; CID_count]' role='measure' type='quantitative' />
+      <column caption='Violation of Freedom of Expression count' datatype='real' name='[Violation of Freedom of Expression_count]' role='measure' type='quantitative' />
+      <column caption='Violation of Right to Health count' datatype='real' name='[Violation of Right to Health_count]' role='measure' type='quantitative' />
+      <column caption='Violation of Rights of Children count' datatype='real' name='[Violation of Rights of Children_count]' role='measure' type='quantitative' />
+      <column caption='Violation of the Right to Freedom of Conscience, Thought and Religion count' datatype='real' name='[Violation of the Right to Freedom of Conscience, Thought and Religion_count]' role='measure' type='quantitative' />
+      <column caption='Violation of the Right to Life count' datatype='real' name='[Violation of the Right to Life_count]' role='measure' type='quantitative' />
+      <column caption='Violation of the Right to a Fair Trial  count' datatype='real' name='[Violation of the Right to a Fair Trial _count]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='rev_filtered_north_korea_data.geojson' datatype='table' name='[__tableau_internal_object_id__].[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]' role='measure' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='rev_filtered_north_korea_data.geojson' id='rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7'>
+            <properties context=''>
+              <relation connection='ogrdirect.1lvo3u61gnkccj15g8k331ogp2ne' name='rev_filtered_north_korea_data.geojson' table='[rev_filtered_north_korea_data.geojson]' type='table'>
+                <columns>
+                  <column datatype='string' name='Location Where the Violation Occurred' ordinal='0' />
+                  <column datatype='string' name='Affiliated Organisation' ordinal='1' />
+                  <column datatype='string' name='Province Where the Violation Occurred' ordinal='2' />
+                  <column datatype='real' name='Violation of Right to Health_count' ordinal='3' />
+                  <column datatype='real' name='Forced Labour_count' ordinal='4' />
+                  <column datatype='real' name='Violation of the Right to Freedom of Conscience, Thought and Religion_count' ordinal='5' />
+                  <column datatype='real' name='Torture &amp; CID_count' ordinal='6' />
+                  <column datatype='real' name='Violation of Freedom of Expression_count' ordinal='7' />
+                  <column datatype='real' name='Violation of the Right to Life_count' ordinal='8' />
+                  <column datatype='real' name='Arbitrary Deprivation of Liberty_count' ordinal='9' />
+                  <column datatype='real' name='Violation of the Right to a Fair Trial _count' ordinal='10' />
+                  <column datatype='real' name='Sexual and Gender-based Violence _count' ordinal='11' />
+                  <column datatype='real' name='Violation of Rights of Children_count' ordinal='12' />
+                  <column datatype='real' name='Violation of the Rights of Detainees with Disabilities_count' ordinal='13' />
+                  <column datatype='spatial' name='Geometry' ordinal='14' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='rev_filtered_north_korea_data' name='federated.0dd8wqi1ent8kl1c1x05a1hqnp2t' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0dd8wqi1ent8kl1c1x05a1hqnp2t'>
+            <column caption='Arbitrary Deprivation of Liberty count' datatype='real' name='[Arbitrary Deprivation of Liberty_count]' role='measure' type='quantitative' />
+            <column caption='Forced Labour count' datatype='real' name='[Forced Labour_count]' role='measure' type='quantitative' />
+            <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
+            <column datatype='string' name='[Location Where the Violation Occurred]' role='dimension' type='nominal' />
+            <column caption='Sexual and Gender-based Violence  count' datatype='real' name='[Sexual and Gender-based Violence _count]' role='measure' type='quantitative' />
+            <column caption='Torture &amp; CID count' datatype='real' name='[Torture &amp; CID_count]' role='measure' type='quantitative' />
+            <column caption='Violation of Freedom of Expression count' datatype='real' name='[Violation of Freedom of Expression_count]' role='measure' type='quantitative' />
+            <column caption='Violation of Right to Health count' datatype='real' name='[Violation of Right to Health_count]' role='measure' type='quantitative' />
+            <column caption='Violation of Rights of Children count' datatype='real' name='[Violation of Rights of Children_count]' role='measure' type='quantitative' />
+            <column caption='Violation of the Right to Freedom of Conscience, Thought and Religion count' datatype='real' name='[Violation of the Right to Freedom of Conscience, Thought and Religion_count]' role='measure' type='quantitative' />
+            <column caption='Violation of the Right to Life count' datatype='real' name='[Violation of the Right to Life_count]' role='measure' type='quantitative' />
+            <column caption='Violation of the Right to a Fair Trial  count' datatype='real' name='[Violation of the Right to a Fair Trial _count]' role='measure' type='quantitative' />
+            <column datatype='real' name='[Violation of the Rights of Detainees with Disabilities_count]' role='measure' type='quantitative' />
+            <_.fcp.ObjectModelTableType.false...column caption='rev_filtered_north_korea_data.geojson' datatype='integer' name='[__tableau_internal_object_id__].[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='rev_filtered_north_korea_data.geojson' datatype='table' name='[__tableau_internal_object_id__].[rev_filtered_north_korea_data.geojson_7127B269C776408D8AC68CF21D4976A7]' role='measure' type='quantitative' />
+            <column-instance column='[Geometry]' derivation='Collect' name='[clct:Geometry:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Location Where the Violation Occurred]' derivation='None' name='[none:Location Where the Violation Occurred:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Arbitrary Deprivation of Liberty_count]' derivation='Sum' name='[sum:Arbitrary Deprivation of Liberty_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Forced Labour_count]' derivation='Sum' name='[sum:Forced Labour_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Sexual and Gender-based Violence _count]' derivation='Sum' name='[sum:Sexual and Gender-based Violence _count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Torture &amp; CID_count]' derivation='Sum' name='[sum:Torture &amp; CID_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of Freedom of Expression_count]' derivation='Sum' name='[sum:Violation of Freedom of Expression_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of Right to Health_count]' derivation='Sum' name='[sum:Violation of Right to Health_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of Rights of Children_count]' derivation='Sum' name='[sum:Violation of Rights of Children_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of the Right to Freedom of Conscience, Thought and Religion_count]' derivation='Sum' name='[sum:Violation of the Right to Freedom of Conscience, Thought and Religion_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of the Right to Life_count]' derivation='Sum' name='[sum:Violation of the Right to Life_count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of the Right to a Fair Trial _count]' derivation='Sum' name='[sum:Violation of the Right to a Fair Trial _count:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Violation of the Rights of Detainees with Disabilities_count]' derivation='Sum' name='[sum:Violation of the Rights of Detainees with Disabilities_count:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[:Measure Names]'>
+            <groupfilter function='level-members' level='[:Measure Names]' />
+          </filter>
+          <slices>
+            <column>[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[Longitude (generated)]' field-type='quantitative' max='14971668.904382305' min='13605799.459324336' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[Latitude (generated)]' field-type='quantitative' max='5322510.8562678173' min='4487260.1639364455' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[clct:Geometry:nk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[none:Location Where the Violation Occurred:nk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[Multiple Values]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Forced Labour_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Torture &amp; CID_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Sexual and Gender-based Violence _count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Freedom of Expression_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Right to Health_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Rights of Children_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to a Fair Trial _count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to Freedom of Conscience, Thought and Religion_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to Life_count:qk]' />
+              <lod column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Rights of Detainees with Disabilities_count:qk]' />
+              <geometry column='[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[clct:Geometry:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true' fontname='Arial Black' fontsize='16'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[none:Location Where the Violation Occurred:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Forced Labour:&#9;</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Forced Labour_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Torture &amp; CID:&#9;</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Torture & CID_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of Freedom of Expression: 	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Freedom of Expression_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of Right to Health:&#9;</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Right to Health_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of Right of Children:	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of Rights of Children_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of the Right to a Fair Trial:	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to a Fair Trial _count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of the Right to Freedom of Conscience, Thought and Religion:	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to Freedom of Conscience, Thought and Religion_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of the Right to Life:	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Right to Life_count:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878' fontsize='11'>Violation of the Rights of Detainees with Diabilities:	</run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[sum:Violation of the Rights of Detainees with Disabilities_count:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.7911050319671631' />
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[Latitude (generated)]</rows>
+        <cols>[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{58650791-110E-4546-9EE1-1A699081B31C}' />
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.5' source-height='44'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='422'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='46'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0dd8wqi1ent8kl1c1x05a1hqnp2t].[none:Location Where the Violation Occurred:nk]</field>
+          </color-one-way>
+        </highlight>
+        <default-map-tool-selection tool='1' />
+      </viewpoint>
+      <simple-id uuid='{4300BDAD-7BD5-484B-A078-3F84DAC2DBD4}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+      Ea6jKn8AAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>
