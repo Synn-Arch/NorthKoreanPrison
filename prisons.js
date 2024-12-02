@@ -4,9 +4,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic3lubmdhdGVjaCIsImEiOiJjbTF4dGF1cTkwdnZ1MmtxM
 // Mapbox 지도 초기화
 const prisonsMap = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/synngatech/cm2tit89i00ix01qi8cq205c3',
+    style: 'mapbox://styles/synngatech/cm46fr29d00rk01qr2l52fofh',
     center: [127.05593, 40.34743],
-    zoom: 6.33
+    zoom: 6.33,
+    maxZoom: 20, // 최대 줌 레벨 설정
+    minZoom: 6  // 최소 줌 레벨 설정 (옵션: 필요에 따라 설정)
 });
 
 // 전역 변수 선언
@@ -101,8 +103,8 @@ function createChartConfig() {
                 {
                     label: 'Violation Counts',
                     data: [],
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(255, 105, 180, 0.5)', // 핑크 반투명
+                    borderColor: 'rgba(255, 105, 180, 1)', // 핑크 경계
                     borderWidth: 1
                 }
             ]
@@ -174,7 +176,13 @@ prisonsMap.on('load', () => {
         type: 'circle',
         source: 'north-korea-tileset',
         'source-layer': 'rev_filtered_north_korea_data-2c9c11',
-        paint: { 'circle-radius': 6, 'circle-color': '#007cbf' }
+        paint: {
+            'circle-radius': 6,
+            'circle-color': '#1700c4',
+            'circle-stroke-width': 2, // 윤곽선 두께
+            'circle-stroke-color': '#FFFFFF' // 흰색 윤곽선
+            //'circle-blur': 0.2 // Halo 효과 추가
+        }
     });
 
     prisonsMap.addLayer({
@@ -285,7 +293,7 @@ prisonsMap.on('load', () => {
         prisonsMap.setPaintProperty('north-korea-layer', 'circle-color', [
             'case',
             ['in', ['get', 'Location Where the Violation Occurred'], ['literal', selectedFeatureIds]], '#FF0000', // 선택된 포인트는 빨간색
-            '#007cbf' // 기본 색상
+            '#1700c4' // 기본 색상
         ]);
     }
 
@@ -354,7 +362,7 @@ prisonsMap.on('load', () => {
         updateStatistics([]);
         
         // 맵 스타일 초기화
-        prisonsMap.setPaintProperty('north-korea-layer', 'circle-color', '#007cbf'); // 기본 색상 복원
+        prisonsMap.setPaintProperty('north-korea-layer', 'circle-color', '#1700c4'); // 기본 색상 복원
         prisonsMap.setPaintProperty('north-korea-layer', 'circle-radius', 6); // 기본 크기 복원
         
         console.log('Selection cleared.');
