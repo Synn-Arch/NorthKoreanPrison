@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* 화면 전체 스크롤 방지 */
+    font-family: 'Libre Baskerville', serif;
+}
+
+#menu-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f88f8f;
+    margin-right: 2em; /* 탭과의 간격 */
+    margin-left: 2em;   /* 왼쪽 여백 추가 */
+}
+
+#menu {
+    width: 100%;
+    height: 50px;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#menu-tabs {
+    display: flex;
+}
+
+.menu-tab {
+    background: none;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 18px;
+}
+
+.menu-tab.active {
+    background-color: #e07878;
+    border-bottom: 2px solid white;
+}
+
+.tab-content {
+    display: none;
+    flex: 1;
+    overflow: hidden; /* 내부 스크롤만 활성화 */
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+#mainContainer {
+    display: flex;
+    flex: 1;
+    height: calc(100% - 50px); /* 메뉴 제외 */
+    overflow: hidden; /* 내부 컨텐츠만 스크롤 가능 */
+}
+
+#map {
+    width: 60%; /* 고정된 너비 */
+    height: 100%; /* 부모 높이 채우기 */
+}
+
+#chartContainer {
+    width: 40%; /* 고정된 너비 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    border-left: 1px solid #ddd;
+    overflow-y: auto; /* 내부 컨텐츠 스크롤 */
+    height: 100%; /* 부모 높이 채우기 */
+}
+
+.chart-canvas {
+    flex: none; /* 크기 변경 방지 */
+    height: 30%; /* 고정된 높이 */
+    margin-bottom: 10px;
+    max-height: 30%;
+    background-color: transparent; /* 배경 제거 */
+    border: none; /* 경계선 제거 */
+    box-shadow: none; /* 그림자 제거 */
+}
