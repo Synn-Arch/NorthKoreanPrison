@@ -1,23 +1,23 @@
-// Mapbox Access Token 설정
+// Mapbox Access Token
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3lubmdhdGVjaCIsImEiOiJjbTF4dGF1cTkwdnZ1MmtxMWRwNDgwazVpIn0.aoTqmmjvf-wJDx-0zbBq5A';
 
-// Mapbox 지도 초기화
+// Initialize Mapbox Map
 const prisonsMap = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/synngatech/cm46fr29d00rk01qr2l52fofh',
     center: [127.05593, 40.34743],
     zoom: 6.33,
     maxZoom: 20, // 최대 줌 레벨 설정
-    minZoom: 6  // 최소 줌 레벨 설정 (옵션: 필요에 따라 설정)
+    minZoom: 6  // 최소 줌 레벨 설정
 });
 
-// 전역 변수 선언
+// Global Variables
 let allFeaturesData = [];
 let sortedLabels = [];
 let sortedData = [];
 let selectedFeatures = [];
 
-// 데이터 처리 함수
+// Remove "_count" to make legible labels
 function filterCountProperties(properties) {
     return Object.entries(properties)
         .filter(([key, value]) => key.endsWith('_count') && value !== null)
@@ -103,8 +103,8 @@ function createChartConfig() {
                 {
                     label: 'Violation Counts',
                     data: [],
-                    backgroundColor: 'rgba(255, 105, 180, 0.5)', // 핑크 반투명
-                    borderColor: 'rgba(255, 105, 180, 1)', // 핑크 경계
+                    backgroundColor: 'rgba(255, 105, 180, 0.5)',
+                    borderColor: 'rgba(255, 105, 180, 1)',
                     borderWidth: 1
                 }
             ]
@@ -205,23 +205,21 @@ prisonsMap.on('load', () => {
         updateChart(chart1);
     });
 
+    let popup = null; 
+
     prisonsMap.on('mouseenter', 'north-korea-layer', (e) => {
-        // 지도 캔버스 커서 변경 (포인트 위에 있을 때)
         prisonsMap.getCanvas().style.cursor = 'pointer';
 
-        // 첫 번째 피처 가져오기
         const feature = e.features[0];
         if (feature) {
             const properties = feature.properties;
             const location = properties['Location Where the Violation Occurred'];
 
-            // `_count`로 끝나는 속성 필터링
             const counts = Object.entries(properties)
                 .filter(([key, value]) => key.endsWith('_count') && value !== null)
                 .map(([key, value]) => `<strong>${key.replace('_count', '')}:</strong> ${value}`)
                 .join('<br>');
 
-            // Tooltip 내용 생성
             const tooltipHTML = `
                 <div>
                     <h4>${location}</h4>
@@ -229,8 +227,11 @@ prisonsMap.on('load', () => {
                 </div>
             `;
 
-            // Popup 생성
-            const popup = new mapboxgl.Popup({
+            // Remove any existing popup to avoid duplication
+            if (popup) popup.remove();
+
+            // Create a new popup
+            popup = new mapboxgl.Popup({
                 closeButton: false,
                 closeOnClick: false,
                 offset: 10
@@ -238,17 +239,15 @@ prisonsMap.on('load', () => {
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML(tooltipHTML)
                 .addTo(prisonsMap);
-
-            // `mouseleave` 이벤트에서 팝업 제거
-            prisonsMap.on('mouseleave', 'north-korea-layer', () => {
-                popup.remove();
-                prisonsMap.getCanvas().style.cursor = ''; // 커서 복원
-            });
         }
     });
 
     prisonsMap.on('mouseleave', 'north-korea-layer', () => {
-        prisonsMap.getCanvas().style.cursor = ''; // 기본 커서로 복원
+        if (popup) {
+            popup.remove();
+            popup = null; // Clear popup reference
+        }
+        prisonsMap.getCanvas().style.cursor = ''; // Restore cursor
     });
 
     prisonsMap.on('dragstart', () => {
@@ -324,6 +323,7 @@ prisonsMap.on('load', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             resetSelection();
+            popup.remove();
         }
     });
 

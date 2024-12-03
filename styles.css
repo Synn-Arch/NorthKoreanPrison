@@ -1,9 +1,21 @@
+/* @font-face {
+    font-family: "KOPUBBATANGMEDIUM";
+    src: url("font/KOPUBBATANGMEDIUM.TTF") format("truetype");
+    font-weight: lighter;
+}
+@font-face {
+    font-family: "KOPUBBATANGLIGHT";
+    src: url("font/KOPUBBATANGLIGHT.TTF") format("truetype");
+    font-weight: lighter;
+} */
+
+
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden; /* 화면 전체 스크롤 방지 */
+    overflow: hidden; /* Restrict Overall Scroll */
     font-family: 'Libre Baskerville', serif;
 }
 
@@ -11,8 +23,8 @@ body {
     font-size: 1.5em;
     font-weight: bold;
     color: #f88f8f;
-    margin-right: 2em; /* 탭과의 간격 */
-    margin-left: 2em;   /* 왼쪽 여백 추가 */
+    margin-right: 2em; /* Margin between tab and title */
+    margin-left: 2em;   /* Margin between left and title */
 }
 
 #menu {
@@ -48,7 +60,7 @@ body {
 .tab-content {
     display: none;
     flex: 1;
-    overflow: hidden; /* 내부 스크롤만 활성화 */
+    overflow: hidden; /* Activate only inside scroll */
 }
 
 .tab-content.active {
@@ -58,17 +70,17 @@ body {
 #mainContainer {
     display: flex;
     flex: 1;
-    height: calc(100% - 50px); /* 메뉴 제외 */
-    overflow: hidden; /* 내부 컨텐츠만 스크롤 가능 */
+    height: calc(100% - 50px); /* For Menubar */
+    overflow: hidden; /* Restrict Overall Scroll */
 }
 
 #map {
-    width: 60%; /* 고정된 너비 */
-    height: 100%; /* 부모 높이 채우기 */
+    width: 60%; /* Fixed Width */
+    height: 100%; /* Fill height */
 }
 
 #chartContainer {
-    width: 40%; /* 고정된 너비 */
+    width: 40%; /* Fixed Width */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -76,16 +88,16 @@ body {
     box-sizing: border-box;
     background-color: #f8f9fa;
     border-left: 1px solid #ddd;
-    overflow-y: auto; /* 내부 컨텐츠 스크롤 */
-    height: 100%; /* 부모 높이 채우기 */
+    overflow-y: auto; /* Scroll */
+    height: 100%; /* Fill height */
 }
 
 .chart-canvas {
-    flex: none; /* 크기 변경 방지 */
-    height: 30%; /* 고정된 높이 */
+    flex: none; /* Fixed Size */
+    height: 30%; /* Fixed Height */
     margin-bottom: 10px;
     max-height: 30%;
-    background-color: transparent; /* 배경 제거 */
-    border: none; /* 경계선 제거 */
-    box-shadow: none; /* 그림자 제거 */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 }
