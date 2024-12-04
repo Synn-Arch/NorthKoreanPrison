@@ -9,7 +9,6 @@
     font-weight: lighter;
 } */
 
-
 body {
     margin: 0;
     display: flex;
@@ -72,15 +71,20 @@ body {
     flex: 1;
     height: calc(100% - 50px); /* For Menubar */
     overflow: hidden; /* Restrict Overall Scroll */
+    min-width: 100vw; /* Prevent container from shrinking */
 }
 
 #map {
     width: 60%; /* Fixed Width */
     height: 100%; /* Fill height */
+    flex-shrink: 0; /* Prevent shrinking */
+    min-width: 60%; /* Prevent shrinking further */
+    min-height: 100%; /* Prevent shrinking further */
 }
 
 #chartContainer {
     width: 40%; /* Fixed Width */
+    height: 100%; /* Fill height */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -89,7 +93,9 @@ body {
     background-color: #f8f9fa;
     border-left: 1px solid #ddd;
     overflow-y: auto; /* Scroll */
-    height: 100%; /* Fill height */
+    flex-shrink: 0; /* Prevent shrinking */
+    min-width: 40%; /* Prevent shrinking further */
+    min-height: 100%; /* Prevent shrinking further */
 }
 
 .chart-canvas {
@@ -100,4 +106,34 @@ body {
     background-color: transparent;
     border: none;
     box-shadow: none;
+}
+
+#chart1Title {
+    font-family: 'Arial';
+    font-size: 1.2em;
+    color: black;
+}
+
+#chart1Description {
+    font-family: 'Arial';
+    font-size: 0.8em;
+    color: black;
+}
+
+#chart2Title {
+    font-family: 'Arial';
+    font-size: 1.2em;
+    color: black;
+}
+
+#chart2Description {
+    font-family: 'Arial';
+    font-size: 0.8em;
+    color: black;
+}
+
+#statistics {
+    font-family: 'Arial';
+    font-size: 0.8em;
+    color: black;
 }

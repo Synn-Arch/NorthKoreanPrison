@@ -1,17 +1,21 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3lubmdhdGVjaCIsImEiOiJjbTF4dGF1cTkwdnZ1MmtxMWRwNDgwazVpIn0.aoTqmmjvf-wJDx-0zbBq5A';
+// mapboxgl.accessToken = 'pk.eyJ1Ijoic3lubmdhdGVjaCIsImEiOiJjbTF4dGF1cTkwdnZ1MmtxMWRwNDgwazVpIn0.aoTqmmjvf-wJDx-0zbBq5A';
 
 const regionsMap = new mapboxgl.Map({
-    container: 'regionsMap', // ID가 다르므로 고유하게 사용
-    style: 'mapbox://styles/synngatech/cm2tit89i00ix01qi8cq205c3',
+    container: 'map',
+    style: 'mapbox://styles/synngatech/cm46fr29d00rk01qr2l52fofh',
     center: [127.05593, 40.34743],
-    zoom: 6.33
+    zoom: 6.33,
+    maxZoom: 20, // 최대 줌 레벨 설정
+    minZoom: 6  // 최소 줌 레벨 설정
 });
 
-let allFeaturesData = [];
-let sortedLabels = []; // 정렬된 라벨 전역 변수
-let sortedData = []; // 정렬된 데이터 전역 변수
-let selectedFeatures = []; // 선택된 피처들 저장
+// Global Variables
+let allFeaturesData2 = [];
+let sortedLabels2 = [];
+let sortedData2 = [];
+let selectedFeatures2 = [];
 
+// Remove "_count" to make legible labels
 function filterCountProperties(properties) {
     return Object.entries(properties)
         .filter(([key, value]) => key.endsWith('_count') && value !== null)
@@ -21,14 +25,13 @@ function filterCountProperties(properties) {
         }, {});
 }
 
-function prepareSortedData(selectedData) {
+function preparesortedData(selectedData) {
     if (!selectedData || selectedData.length === 0) {
-        sortedLabels = [];
-        sortedData = [];
+        sortedLabels2 = [];
+        sortedData2 = [];
         return;
     }
 
-    // 데이터 집계
     const aggregated = selectedData.reduce((acc, feature) => {
         const counts = filterCountProperties(feature.properties);
         for (const [key, value] of Object.entries(counts)) {
@@ -37,19 +40,17 @@ function prepareSortedData(selectedData) {
         return acc;
     }, {});
 
-    // 라벨과 데이터 정렬
     const sortedEntries = Object.entries(aggregated)
-        .map(([key, value]) => ({ label: key.replace('_count', ''), value })) // 라벨과 값 매핑
-        .sort((a, b) => a.label.localeCompare(b.label)); // ABC 순 정렬
+        .map(([key, value]) => ({ label: key.replace('_count', ''), value }))
+        .sort((a, b) => a.label.localeCompare(b.label));
 
-    // 정렬된 결과를 전역 변수에 저장
-    sortedLabels = sortedEntries.map(entry => entry.label);
-    sortedData = sortedEntries.map(entry => entry.value);
+    sortedLabels2 = sortedEntries.map(entry => entry.label);
+    sortedData2 = sortedEntries.map(entry => entry.value);
 }
 
 function updateChart(chart) {
-    chart.data.labels = sortedLabels;
-    chart.data.datasets[0].data = sortedData;
+    chart.data.labels = sortedLabels2;
+    chart.data.datasets[0].data = sortedData2;
     chart.update();
 }
 
@@ -65,21 +66,14 @@ function updateStatistics(selectedData) {
         return;
     }
 
-    // 선택된 위치 이름들
     const locations = selectedData.map(feature => feature.properties['Location Where the Violation Occurred']);
     const locationString = locations.join(', ');
 
-    // 제목 업데이트
     chart2Title.innerHTML = locations.length > 1 ? `Details for Multiple Locations` : `Details for ${locations[0]}`;
-
-    // 부가 설명 업데이트
     chart2Description.innerHTML = `
-        <p>
-            This chart shows the combined violation counts for the selected locations: <strong>${locationString}</strong>.
-        </p>
+        <p>This chart shows the combined violation counts for the selected locations: <strong>${locationString}</strong>.</p>
     `;
 
-    // 통계 업데이트
     const aggregated = selectedData.reduce((acc, feature) => {
         const counts = filterCountProperties(feature.properties);
         for (const [key, value] of Object.entries(counts)) {
@@ -94,15 +88,10 @@ function updateStatistics(selectedData) {
         statisticsHTML += `<li>${label}: ${value}</li>`;
     }
     statisticsHTML += '</ul>';
-
     statisticsContainer.innerHTML = statisticsHTML;
 }
 
-const ctx1 = document.getElementById('chart1').getContext('2d');
-const chart1 = new Chart(ctx1, createChartConfig());
-const ctx2 = document.getElementById('chart2').getContext('2d');
-const chart2 = new Chart(ctx2, createChartConfig());
-
+// Chart.js 설정
 function createChartConfig() {
     return {
         type: 'bar',
@@ -112,8 +101,8 @@ function createChartConfig() {
                 {
                     label: 'Violation Counts',
                     data: [],
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(255, 105, 180, 0.5)',
+                    borderColor: 'rgba(255, 105, 180, 1)',
                     borderWidth: 1
                 }
             ]
@@ -134,12 +123,28 @@ function createChartConfig() {
                             const label = this.getLabelForValue(value);
                             if (!label) return '';
 
-                            const maxCharsPerLine = 10;
+                            const chartWidth = this.chart.width; // 차트의 전체 폭
+                            const barCount = this.chart.data.labels.length; // Bar 개수
+                            const barWidth = chartWidth / barCount; // 각 Bar의 폭
+                            const charWidth = 6; // 문자 한 개의 대략적인 폭 (픽셀 기준)
+                            const maxCharsPerLine = Math.floor(barWidth / charWidth); // 각 Bar 폭에 맞는 최대 문자 수
+
+                            // 단어 단위로 줄바꿈
+                            const words = label.split(' ');
                             let lines = [];
-                            for (let i = 0; i < label.length; i += maxCharsPerLine) {
-                                lines.push(label.slice(i, i + maxCharsPerLine));
+                            let currentLine = '';
+
+                            for (const word of words) {
+                                if ((currentLine + word).length <= maxCharsPerLine) {
+                                    currentLine += (currentLine ? ' ' : '') + word;
+                                } else {
+                                    lines.push(currentLine);
+                                    currentLine = word;
+                                }
                             }
-                            return lines;
+                            if (currentLine) lines.push(currentLine); // 마지막 줄 추가
+
+                            return lines; // 줄바꿈된 라벨 반환
                         }
                     },
                     grid: {
@@ -152,6 +157,12 @@ function createChartConfig() {
     };
 }
 
+const ctx3 = document.getElementById('chart1').getContext('2d');
+const chart3 = new Chart(ctx3, createChartConfig());
+const ctx4 = document.getElementById('chart2').getContext('2d');
+const chart4 = new Chart(ctx4, createChartConfig());
+
+// 지도 초기화 및 데이터 로드
 regionsMap.on('load', () => {
     regionsMap.addSource('north-korea-tileset', {
         type: 'vector',
@@ -165,7 +176,10 @@ regionsMap.on('load', () => {
         'source-layer': 'rev_filtered_north_korea_data-2c9c11',
         paint: {
             'circle-radius': 6,
-            'circle-color': '#007cbf'
+            'circle-color': '#1700c4',
+            'circle-stroke-width': 2, // 윤곽선 두께
+            'circle-stroke-color': '#FFFFFF' // 흰색 윤곽선
+            //'circle-blur': 0.2 // Halo 효과 추가
         }
     });
 
@@ -174,87 +188,36 @@ regionsMap.on('load', () => {
         type: 'circle',
         source: 'north-korea-tileset',
         'source-layer': 'rev_filtered_north_korea_data-2c9c11',
-        paint: {
-            'circle-radius': 6.2, // 히트 영역 크기
-            'circle-color': 'rgba(0, 0, 0, 0)' // 투명한 색상
-        }
+        paint: { 'circle-radius': 6.2, 'circle-color': 'rgba(0, 0, 0, 0)' }
     });
 
-    fetch('https://Synn-Arch.github.io/NorthKoreanPrisons/rev_filtered_north_korea_data.geojson')
+    fetch('https://Synn-Arch.github.io/NorthKoreanPrisons/Data/rev_filtered_north_korea_data.geojson')
     .then(response => response.json())
     .then(data => {
-        // 각 Feature에 고유 ID 추가
+        // 각 Feature에 고유 ID 재생성
         data.features.forEach((feature, index) => {
-            feature.id = feature.id || `feature-${index}`; // 기존 ID가 없으면 고유 ID 생성
+            feature.id = `feature-${index}`; // 기존 ID를 덮어쓰고 고유 ID 재생성
         });
-        allFeaturesData = data.features;
-        prepareSortedData(allFeaturesData);
+        allFeaturesData2 = data.features;
+        prepareSortedData(allFeaturesData2);
         updateChart(chart1);
     });
 
-    regionsMap.on('click', 'north-korea-hit-area', (e) => {
-    const clickedFeatures = e.features || [];
-        
-        // Ctrl(Windows/Linux) 또는 Cmd(macOS) 키를 누른 상태로 클릭한 경우 추가
-        if (e.originalEvent.ctrlKey || e.originalEvent.metaKey) {
-            // 중복되지 않도록 기존 선택과 새 선택을 병합
-            selectedFeatures = [...new Set([...selectedFeatures, ...clickedFeatures])];
-        } else {
-            // Ctrl/Cmd 키를 누르지 않은 경우 새로 선택
-            selectedFeatures = clickedFeatures;
-        }
-        
-        if (selectedFeatures.length > 0) {
-            // 정렬된 데이터를 준비하고 차트2 업데이트
-            prepareSortedData(selectedFeatures);
-            updateChart(chart2);
-            updateStatistics(selectedFeatures);
-        } else {
-            console.log('No features selected.');
-        }
-    });
-
-    regionsMap.on('click', (e) => {
-        const clickedFeatures = map.queryRenderedFeatures(e.point, {
-            layers: ['north-korea-layer']
-        });
-    
-        // 점 외부를 클릭하면 선택 해제
-        if (clickedFeatures.length === 0) {
-            selectedFeatures = [];
-            prepareSortedData(selectedFeatures);
-            updateChart(chart2);
-            updateStatistics(selectedFeatures);
-            console.log('Selection cleared.');
-            return;
-        }
-    });
-
-    // Esc 키를 눌렀을 때 선택 해제
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            selectedFeatures = [];
-            prepareSortedData(selectedFeatures);
-            updateChart(chart2);
-            updateStatistics(selectedFeatures);
-            console.log('Selection cleared by Esc key.');
-        }
-    });
-        
+    let popup = null; 
 
     regionsMap.on('mouseenter', 'north-korea-layer', (e) => {
-        const feature = e.features[0]; // 첫 번째 피처 가져오기
+        regionsMap.getCanvas().style.cursor = 'pointer';
+
+        const feature = e.features[0];
         if (feature) {
             const properties = feature.properties;
             const location = properties['Location Where the Violation Occurred'];
 
-            // `_count`로 끝나는 속성 필터링
             const counts = Object.entries(properties)
                 .filter(([key, value]) => key.endsWith('_count') && value !== null)
-                .regionsMap(([key, value]) => `<strong>${key.replace('_count', '')}:</strong> ${value}`)
+                .map(([key, value]) => `<strong>${key.replace('_count', '')}:</strong> ${value}`)
                 .join('<br>');
 
-            // Tooltip 내용 생성
             const tooltipHTML = `
                 <div>
                     <h4>${location}</h4>
@@ -262,130 +225,160 @@ regionsMap.on('load', () => {
                 </div>
             `;
 
-            // Popup 설정
-            const popup = new mapboxgl.Popup({ closeButton: false, offset: 10 })
+            // Remove any existing popup to avoid duplication
+            if (popup) popup.remove();
+
+            // Create a new popup
+            popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false,
+                offset: 10
+            })
                 .setLngLat(feature.geometry.coordinates)
                 .setHTML(tooltipHTML)
                 .addTo(regionsMap);
+        }
+    });
 
-            // 마우스가 나갈 때 팝업 제거
-            regionsMap.on('mouseleave', 'north-korea-layer', () => {
-                popup.remove();
-                map.getCanvas().style.cursor = '';
+    regionsMap.on('mouseleave', 'north-korea-layer', () => {
+        if (popup) {
+            popup.remove();
+            popup = null; // Clear popup reference
+        }
+        regionsMap.getCanvas().style.cursor = ''; // Restore cursor
+    });
+
+    regionsMap.on('dragstart', () => {
+        regionsMap.getCanvas().style.cursor = 'grab'; // 지도 이동 시
+    });
+
+    regionsMap.on('dragend', () => {
+        regionsMap.getCanvas().style.cursor = ''; // 기본 커서로 복원
+    });
+
+    regionsMap.on('click', 'north-korea-hit-area', (e) => {
+        const clickedFeatures = e.features || [];
+    
+        // "Location Where the Violation Occurred"를 ID로 사용
+        clickedFeatures.forEach(feature => {
+            feature.id = feature.properties["Location Where the Violation Occurred"] || `temporary-id-${feature.geometry.coordinates}`;
+        });
+    
+        // Ctrl/Meta 키로 다중 선택 지원
+        if (e.originalEvent.ctrlKey || e.originalEvent.metaKey) {
+            clickedFeatures.forEach(feature => {
+                if (!selectedFeatures2.some(f => f.id === feature.id)) {
+                    selectedFeatures2.push(feature);
+                }
             });
-
-            // 커서 변경
-            regionsMap.getCanvas().style.cursor = 'pointer';
-        }
-    });
-
-    ctx1.canvas.onclick = (event) => {
-        const points = chart1.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
-    
-        if (points.length > 0) {
-            const clickedIndex = points[0].index; // 클릭된 bar의 인덱스
-            const selectedLabel = chart1.data.labels[clickedIndex]; // 클릭된 bar의 라벨
-            const selectedValue = chart1.data.datasets[0].data[clickedIndex]; // 클릭된 bar의 값
-    
-            console.log(`Selected Label: ${selectedLabel}, Value: ${selectedValue}`);
-    
-            // 지도 위 포인트의 크기를 업데이트
-            updateMapPointSizes(selectedLabel, selectedValue);
-        }
-    };
-
-    function updateMapPointSizes(selectedLabel, selectedValue) {
-        const duration = 100; // 애니메이션 지속 시간 (밀리초)
-        const steps = 30; // 애니메이션 프레임 수
-        const startRadius = 6; // 초기 크기
-        const endRadiusScale = 100; // 스케일링 팩터
-    
-        // 점 크기 업데이트를 위한 함수
-        function animateStep(step) {
-            const t = step / steps; // 현재 단계 비율 (0 ~ 1)
-            const currentRadiusScale = startRadius + t * (endRadiusScale - startRadius);
-    
-            // Mapbox 스타일 표현식 업데이트
-            regionsMap.setPaintProperty('north-korea-layer', 'circle-radius', [
-                'case',
-                ['==', ['get', `${selectedLabel}_count`], null], 6, // 값이 없는 경우 기본 크기
-                [
-                    '*',
-                    ['/', ['get', `${selectedLabel}_count`], selectedValue], // 선택된 값에 비례
-                    currentRadiusScale // 점진적으로 증가하는 스케일링 값
-                ]
-            ]);
-    
-            if (step < steps) {
-                requestAnimationFrame(() => animateStep(step + 1)); // 다음 단계로 이동
-            }
+        } else {
+            selectedFeatures2 = clickedFeatures; // 단일 선택 모드
         }
     
-        animateStep(0); // 애니메이션 시작
-    }
-
-    function resetSelection() {
-        // 선택된 피처 및 차트 초기화
-        selectedFeatures = [];
-        prepareSortedData(selectedFeatures);
+        updateSelectedFeaturesStyle();
+        prepareSortedData(selectedFeatures2);
         updateChart(chart2);
-        updateStatistics(selectedFeatures);
+        updateStatistics(selectedFeatures2);
     
-        // 지도 포인트 크기 초기화
-        regionsMap.setPaintProperty('north-korea-layer', 'circle-radius', 6); // 기본 크기
-    
-        console.log('Selection cleared.');
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            resetSelection();
-        }
+        // 선택된 고유 ID 출력
+        console.log("Selected IDs:", selectedFeatures2.map(f => f.id));
     });
+
+    function updateSelectedFeaturesStyle() {
+        const selectedFeatureIds = selectedFeatures2.map(f => f.id);
+    
+        regionsMap.setPaintProperty('north-korea-layer', 'circle-color', [
+            'case',
+            ['in', ['get', 'Location Where the Violation Occurred'], ['literal', selectedFeatureIds]], '#FF0000', // 선택된 포인트는 빨간색
+            '#1700c4' // 기본 색상
+        ]);
+    }
 
     regionsMap.on('click', (e) => {
-        const clickedFeatures = map.queryRenderedFeatures(e.point, {
+        const clickedFeatures = regionsMap.queryRenderedFeatures(e.point, {
             layers: ['north-korea-layer']
         });
     
-        // 빈 부분 클릭 시 초기화
         if (clickedFeatures.length === 0) {
             resetSelection();
         }
     });
 
-    ctx1.canvas.onclick = (event) => {
+    ctx3.canvas.onclick = (event) => {
         const points = chart1.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
-    
+
         if (points.length > 0) {
-            const clickedIndex = points[0].index; // 클릭된 bar의 인덱스
-            const selectedLabel = chart1.data.labels[clickedIndex]; // 클릭된 bar의 라벨
-            const selectedValue = chart1.data.datasets[0].data[clickedIndex]; // 클릭된 bar의 값
-    
-            console.log(`Selected Label: ${selectedLabel}, Value: ${selectedValue}`);
-    
-            // 지도 위 포인트의 크기를 업데이트
+            const clickedIndex = points[0].index;
+            const selectedLabel = chart1.data.labels[clickedIndex];
+            const selectedValue = chart1.data.datasets[0].data[clickedIndex];
+
             updateMapPointSizes(selectedLabel, selectedValue);
         } else {
-            // 빈 부분 클릭 시 초기화
             resetSelection();
         }
     };
 
-});
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            resetSelection();
+            popup.remove();
+        }
+    });
 
+    function updateMapPointSizes(selectedLabel, selectedValue) {
+        const steps = 30;
+        const startRadius = 6;
+        const endRadiusScale = 100;
+
+        function animateStep(step) {
+            const t = step / steps;
+            const currentRadiusScale = startRadius + t * (endRadiusScale - startRadius);
+
+            regionsMap.setPaintProperty('north-korea-layer', 'circle-radius', [
+                'case',
+                ['==', ['get', `${selectedLabel}_count`], null], 6,
+                ['*', ['/', ['get', `${selectedLabel}_count`], selectedValue], currentRadiusScale]
+            ]);
+
+            if (step < steps) {
+                requestAnimationFrame(() => animateStep(step + 1));
+            }
+        }
+
+        animateStep(0);
+    }
+
+    function resetSelection() {
+        // 선택된 피처 초기화
+        selectedFeatures2 = [];
+        
+        // 차트 데이터 초기화
+        prepareSortedData([]);
+        updateChart(chart2);
+        
+        // 통계 데이터 초기화
+        updateStatistics([]);
+        
+        // 맵 스타일 초기화
+        regionsMap.setPaintProperty('north-korea-layer', 'circle-color', '#1700c4'); // 기본 색상 복원
+        regionsMap.setPaintProperty('north-korea-layer', 'circle-radius', 6); // 기본 크기 복원
+        
+        console.log('Selection cleared.');
+    }
+});
 
 // 탭 전환 기능
 document.querySelectorAll('.menu-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
         const targetTab = e.target.dataset.tab;
-    
-        // 모든 탭과 컨텐츠 비활성화
+
         document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    
-        // 클릭한 탭과 해당 컨텐츠 활성화
+
         e.target.classList.add('active');
         document.getElementById(`${targetTab}Content`).classList.add('active');
     });
 });
+
+// 기본 탭 설정
+document.querySelector('.menu-tab[data-tab="prisons"]').click();
